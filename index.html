@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Technical Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <nav id="navbar" class="navbar">
+      <header class="nav-head"><h1>11ty Documentation</h1></header>
+      <a href="#getting_started" class="nav-link">Getting started</a>
+      <a href="#make_a_project_directory" class="nav-link">Make a project directory</a>
+      <a href="#install_eleventy" class="nav-link">Install Eleventy</a>
+      <a href="#run_eleventy" class="nav-link">Run Eleventy</a>
+      <a href="#create_some_templates" class="nav-link">Create some templates</a>
+      <a href="#gaze_upon_your_templates" class="nav-link">Gaze upon your templates</a>
+    </nav>
+
+    <main id="main-doc" class="main">
+      <section class="main-section" id="getting_started">
+        <header><h2>Getting started</h2></header>
+        <p>Eleventy is <a href="https://www.npmjs.com/package/@11ty/eleventy">available on npm</a> and requires version 10 of <a href="https://nodejs.org/">Node.js</a> or higher.</p>
+        <p class="info">Don’t include <code class="code-inline">~ $</code> or <code class="code-inline">~/eleventy-sample $</code> when you run these commands (you can’t copy and paste that text anyway).</p>
+        <p>Getting started sections:</p>
+        <ol>
+          <li>Make a project directory</li>
+          <li>Install Eleventy</li>
+          <li>Run Eleventy</li>
+          <li>Create some templates</li>
+          <li>Gaze upon your templates</li>
+        </ol>
+      </section>
+      
+      <section class="main-section" id="make_a_project_directory">
+        <header><h2>Make a project directory</h2></header>
+        <p>Make a directory with your project in it.</p>
+        <code class="code"><span class="cl">mkdir eleventy-sample</span><br />
+          <span class="cl">cd eleventy-sample</span></code>
+        <p>You’re now in your new project’s directory.</p>
+      </section>
+      
+      <section class="main-section" id="install_eleventy">
+        <header><h2>Install Eleventy</h2></header>
+        <h3>Create a package.json</h3>
+        <p>Installing Eleventy into our project requires a <span class="code-inline">package.json</span> file. Let’s create it with <a href="https://docs.npmjs.com/cli/init">npm init</a>. The <span class="code-inline">-y</span> parameter tells npm to skip all the questions and just use the defaults.</p>
+        <code class="code"><span class="cl-eleventy">npm init -y</span></code>
+
+        <h3>Install Eleventy into package.json</h3>
+        <p>Now we can install and save Eleventy into our project’s <span class="code-inline">package.json</span> by running:</p>
+        <code class="code"><span class="cl-eleventy">npm install --save-dev @11ty/eleventy</span></code>
+        <p>Installing locally is preferred to <a href="https://www.11ty.dev/docs/global-installation/">global installation</a>.</p>
+      </section>
+
+      <section class="main-section" id="run_eleventy">
+        <header><h2>Run Eleventy</h2></header>
+        <p>We can use npx to run our local project version’s version of Eleventy. Let’s make sure our installation went okay and try to run Eleventy:</p>
+        <code class="code"><span class="cl-eleventy">npx @11ty/eleventy</span><br>
+          Processed 0 files in 0.03 seconds (v0.12.1)</code>
+        <p>Make sure that you see <code class="code-inline">(v0.12.1)</code> in your output. This lets you know you’re using the newest version. However, Eleventy didn’t process any files! This is expected—we have an empty folder with no templates inside.</p>
+      </section>
+
+      <section class="main-section" id="create_some_templates">
+        <header><h2>Create some templates</h2></header>
+        <p>Let’s run two commands to create two new template files.</p>
+        <code class="code">
+          <span class="cl-eleventy">
+            '&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Page title&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Hi&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;' &gt; index.html
+          </span><br>
+          <span class="cl-eleventy">
+            echo '# Page header' &gt; README.md
+          </span>
+        </code>
+        <p>We’ve now created an HTML template and a markdown template. Let’s run Eleventy again:</p>
+        <code class="code"><span class="cl-eleventy">npx @11ty/eleventy</span><br>
+          Writing _site/README/index.html from ./README.md<br>
+          Writing _site/index.html from ./index.html<br>
+          Processed 2 files in 0.12 seconds (v0.12.1)</code>
+        <p>This will compile any content templates in the current directory or subdirectories into the output folder (defaults to <code class="code-inline">_site</code>).</p>
+      </section>
+
+      <section class="main-section" id="gaze_upon_your_templates">
+        <header><h2>Gaze upon your templates</h2></header>
+        <p>Use <code class="code-inline">--serve</code> to start up a hot-reloading local web server.</p>
+        <code class="code">
+          <span class="cl-eleventy">npx @11ty/eleventy --serve</span><br>
+          Writing _site/README/index.html from ./README.md<br>
+          Writing _site/index.html from ./index.html<br>
+          Processed 2 files in 0.12 seconds (v0.12.1)<br>
+          Watching…<br>
+          <br>
+          (some output truncated)<br>
+          <br>
+          [Browsersync] Serving files from: _site
+        </code>
+        <p>Go to <code class="code-inline">http://localhost:8080/</code> or <code class="code-inline">http://localhost:8080/README/</code> to see your Eleventy site live! Make a change to your template files and save them—Eleventy using BrowserSync will refresh the browser with your new changes automatically.</p>
+        <p class="info">Important Note: Editing README.md won't refresh your browser automatically, because <a href="https://browsersync.io/docs/#requirements">Browsersync requires a <code class="code-inline">&lt;body&gt;</code> tag in your template</a> for live-reload to work properly. Use <a href="https://www.11ty.dev/docs/layouts/">Layouts</a> to add a <code class="code-inline">&lt;body&gt;</code> around your Markdown content.</p>
+        <p>Congratulations—you made something with Eleventy! Now put it to work with templating syntax, front matter, and data files.</p>
+      </section>
+    </main>
+
+    <footer class="footer">Texts from <a href="https://www.11ty.dev/docs/getting-started/">11ty's technical documentation</a>.</footer>
+    
+
+  </body>
+</html>

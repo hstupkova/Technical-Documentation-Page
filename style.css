@@ -1,0 +1,160 @@
+html { box-sizing: border-box; }
+*, ::before, ::after { box-sizing: inherit; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* LAYOUT */
+.navbar {
+  height: 255px;
+  width: 100%;
+  position: fixed;
+}
+
+@media screen and (max-width: 767px) {
+  .main::before {
+    content: "";
+    display: block;
+    height: 255px;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    height: 100%;
+    width: 300px;
+  }
+
+  .main {
+    margin-left: 301px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navbar {
+    height: 100%;
+    width: 350px;
+  }
+
+  .main {
+    margin-left: 351px;
+  }
+}
+
+/* NAVBAR */
+.navbar {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 10px;
+  background-color: white;
+  border-bottom: 4px solid #DFF7FF;
+}
+
+.nav-head h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 0;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: black;
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-decoration: none;
+  display: block;
+  padding: 5px 0;
+}
+
+.nav-link::after {
+  content: " >>";
+}
+
+.nav-link:hover,
+.nav-link:active {
+  background-color: #DFF7FF;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    border-bottom: 0;
+    border-right: 4px solid #DFF7FF;
+  }
+
+  .nav-link {
+    padding: 1em 0;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .nav-link {
+    font-size: 1.25rem;
+  }
+}
+
+/* MAIN */
+.main {
+  padding: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    padding-left: 20px;
+  }
+}
+
+.main-section:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+.main-section h2 {
+  margin-top: 0;
+}
+
+.info {
+  font-style: italic;
+  padding-left: 20px;
+}
+
+.code {
+  display: block;
+  background-color: #ebebeb;
+  padding: 10px 20px;
+  line-height: 2;
+}
+
+.code-inline {
+  background-color: #ebebeb;
+  font-size: 1rem;
+  font-style: normal;
+  padding: 0.1em 0.3em;
+}
+
+.cl::before {
+  content: "~ $ ";
+  color: gray;
+}
+
+.cl-eleventy::before {
+  content: "~/eleventy-sample $ ";
+  color: gray;
+}
+
+
+/* FOOTER */
+.footer {
+  background-color: #DFF7FF;
+  padding: 20px;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+}
